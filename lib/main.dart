@@ -10,11 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'LinkAja',
+      debugShowCheckedModeBanner: false,
       home: const MyHomePage(),
       theme: ThemeData(
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           backgroundColor: Colors.transparent,
         ),
       ),
@@ -37,7 +37,7 @@ class MyHomePage extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(left: 8.0),
                 child: Image.asset(
-                  'assets/images/linkaja.png',
+                  'assets/images/LinkAja.png',
                   height: 40,
                 ),
               ),
@@ -51,7 +51,7 @@ class MyHomePage extends StatelessWidget {
                     ),
                     child: IconButton(
                       color: Colors.black,
-                      icon: Icon(Icons.discount_outlined),
+                      icon: const Icon(Icons.discount_outlined),
                       onPressed: () {
                         // Tindakan saat tombol notifikasi ditekan
                       },
@@ -75,11 +75,11 @@ class MyHomePage extends StatelessWidget {
               ),
             ],
           ),
-          Card(
+          const Card(
             color: Colors.red, // Warna latar belakang merah
             margin: EdgeInsets.all(16),
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               child: Column(
                 children: [
                   Text(
