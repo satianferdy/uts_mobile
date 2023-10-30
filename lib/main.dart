@@ -25,14 +25,15 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'UTS',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 193, 27, 15)),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: MyApp.tabScreens[_tabIndex],
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.red,
+          backgroundColor: const Color.fromARGB(255, 193, 27, 15),
           onPressed: () {},
           child: const Icon(
             Icons.qr_code,
@@ -44,7 +45,7 @@ class _MyAppState extends State<MyApp> {
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _tabIndex,
-          selectedItemColor: Colors.red,
+          selectedItemColor: const Color.fromARGB(255, 193, 27, 15),
           unselectedItemColor: Colors.black,
           showUnselectedLabels: true,
           items: const [

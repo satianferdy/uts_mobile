@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_uts/config/icon.dart';
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePages extends StatelessWidget {
   const HomePages({super.key});
@@ -14,7 +16,7 @@ class HomePages extends StatelessWidget {
           minHeight: MediaQuery.of(context).size.height,
         ),
         decoration: const BoxDecoration(
-          color: Colors.white,
+          color: Color.fromARGB(255, 247, 247, 255),
         ),
         child: const SafeArea(
           child: Column(
@@ -23,8 +25,11 @@ class HomePages extends StatelessWidget {
               TopBar(),
               CardParent(),
               TopFeature(),
+              SizedBox(height: 10),
               SecondFeature(),
+              SizedBox(height: 10),
               BannerCarousel(),
+              SizedBox(height: 20),
             ],
           ),
         ),
@@ -46,19 +51,19 @@ class SecondFeature extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             MenuWidget(
-              icon: FontAwesomeIcons.icons,
+              icon: IconAsset.icon_pulsa,
               title: 'Pulsa/Data',
             ),
             MenuWidget(
-              icon: FontAwesomeIcons.icons,
+              icon: IconAsset.icon_electricity,
               title: 'Electricity',
             ),
             MenuWidget(
-              icon: FontAwesomeIcons.icons,
+              icon: IconAsset.icon_bpjs,
               title: 'BPJS',
             ),
             MenuWidget(
-              icon: FontAwesomeIcons.gamepad,
+              icon: IconAsset.icon_games,
               title: 'mgames',
             ),
           ],
@@ -67,19 +72,19 @@ class SecondFeature extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             MenuWidget(
-              icon: FontAwesomeIcons.icons,
+              icon: IconAsset.icon_internet,
               title: 'Internet',
             ),
             MenuWidget(
-              icon: FontAwesomeIcons.icons,
+              icon: IconAsset.icon_pdam,
               title: 'PDAM',
             ),
             MenuWidget(
-              icon: FontAwesomeIcons.icons,
+              icon: IconAsset.icon_money,
               title: 'E-Money',
             ),
             MenuWidget(
-              icon: FontAwesomeIcons.icons,
+              icon: IconAsset.icon_more,
               title: 'More',
             ),
           ],
@@ -96,23 +101,19 @@ class TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          margin: const EdgeInsets.only(left: 16, top: 20),
-          child: Image.asset(
+    return Container(
+      margin: const EdgeInsets.only(top: 16, right: 16, left: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset(
             'assets/images/LinkAja.png',
             height: 40,
           ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(top: 20),
-          child: Row(
+          Row(
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 8.0),
-                padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(2.0),
@@ -127,8 +128,6 @@ class TopBar extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(right: 16.0),
-                padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(2.0),
@@ -144,8 +143,8 @@ class TopBar extends StatelessWidget {
               )
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -158,7 +157,7 @@ class TopFeature extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border.all(
@@ -166,24 +165,32 @@ class TopFeature extends StatelessWidget {
           width: 1,
         ),
         borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: const Offset(0, 1),
+          ),
+        ],
       ),
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           MenuWidget(
-            icon: FontAwesomeIcons.solidCreditCard,
+            icon: IconAsset.icon_topup,
             title: 'Top Up',
           ),
           MenuWidget(
-            icon: FontAwesomeIcons.moneyBillTransfer,
+            icon: IconAsset.icon_transfer,
             title: 'Send Money',
           ),
           MenuWidget(
-            icon: FontAwesomeIcons.moneyBill1Wave,
+            icon: IconAsset.icon_ticket,
             title: 'Ticket Code',
           ),
           MenuWidget(
-            icon: FontAwesomeIcons.solidCommentDots,
+            icon: IconAsset.icon_seeall,
             title: 'See All',
           ),
         ],
@@ -193,7 +200,7 @@ class TopFeature extends StatelessWidget {
 }
 
 class MenuWidget extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final String title;
   const MenuWidget({
     super.key,
@@ -204,25 +211,21 @@ class MenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       alignment: Alignment.center,
       width: 75,
       height: 75,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          FaIcon(
-            icon,
-            size: 30,
-            color: const Color.fromARGB(255, 193, 27, 15),
+          Image.asset(
+            (icon),
+            height: 48,
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 5.0),
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 12,
-              ),
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 12,
             ),
           ),
         ],
@@ -239,38 +242,37 @@ class CardParent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Container(
-        width: 380,
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 193, 27, 15),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Hi, Nama Pengguna',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
+      width: 380,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      padding: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 193, 27, 15),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Hi, Satian Ferdiansyah',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+          SizedBox(height: 12),
+          Row(
+            children: [
+              CardChild(
+                title: 'Your Balance',
+                balance: '150.000',
               ),
-            ),
-            Row(
-              children: [
-                CardChild(
-                  title: 'Your Balance',
-                  balance: '150.000',
-                ),
-                CardChild(
-                  title: 'Bonus Balance',
-                  balance: '2088',
-                ),
-              ],
-            ),
-          ],
-        ),
+              CardChild(
+                title: 'Bonus Balance',
+                balance: '2088',
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -288,90 +290,112 @@ class CardChild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 10.0),
-      child: Row(
+      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.only(right: 16),
+      height: 70,
+      width: 140,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: Colors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-            margin: const EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5.0),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title),
-                Container(
-                  margin: const EdgeInsets.only(top: 10),
-                  child: Row(
-                    children: [
-                      Text(
-                        balance,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: const Icon(
-                          Icons.arrow_right_alt,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 12),
           ),
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              Text(
+                'Rp $balance',
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(width: 4),
+              Container(
+                margin: const EdgeInsets.only(left: 4),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: const Icon(
+                  Icons.arrow_right,
+                  color: Colors.white,
+                  size: 16,
+                ),
+              ),
+              // Image.asset('assets/images/icon_red_arrow.png', height: 14)
+            ],
+          )
         ],
       ),
     );
   }
 }
 
-class BannerCarousel extends StatelessWidget {
+class BannerCarousel extends StatefulWidget {
   const BannerCarousel({
     super.key,
   });
 
   @override
+  State<BannerCarousel> createState() => _BannerCarouselState();
+}
+
+class _BannerCarouselState extends State<BannerCarousel> {
+  final List<String> myImages = [
+    'assets/images/carosel1.png',
+    'assets/images/carosel2.png',
+    'assets/images/carosel1.png',
+    'assets/images/carosel2.png',
+  ];
+
+  int _current = 0;
+  @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: 180,
-        autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 3),
-        autoPlayAnimationDuration: const Duration(milliseconds: 800),
-        autoPlayCurve: Curves.fastOutSlowIn,
-        pauseAutoPlayOnTouch: true,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CarouselSlider.builder(
+            itemCount: myImages.length,
+            itemBuilder: (context, index, realIndex) => Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.asset(
+                  myImages[index],
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            options: CarouselOptions(
+              height: 130,
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 3),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              pauseAutoPlayOnTouch: true,
+              onPageChanged: (index, reason) =>
+                  setState(() => _current = index),
+            ),
+          ),
+          const SizedBox(height: 8),
+          AnimatedSmoothIndicator(
+            activeIndex: _current,
+            count: myImages.length,
+            effect: const SlideEffect(
+              activeDotColor: Color.fromARGB(255, 193, 27, 15),
+              dotColor: Colors.grey,
+              dotWidth: 8,
+              dotHeight: 8,
+            ),
+          ),
+        ],
       ),
-      items: [1, 2, 3, 4, 5].map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-              width: MediaQuery.of(context).size.width,
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 185, 175, 175),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Text(
-                'gambar $i',
-                style: const TextStyle(fontSize: 16.0),
-              ),
-            );
-          },
-        );
-      }).toList(),
     );
   }
 }
